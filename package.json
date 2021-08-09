@@ -1,21 +1,28 @@
 {
-  "name": "api-x",
-  "version": "1.0.0",
-  "description": "simple web api",
+  "name": "apis-x",
+  "version": "1.0.1",
+  "description": "NodeJS api testing",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ztfcode/"
+    "url": "git+https://github.com/ztfcode/apisx.git"
   },
   "keywords": [
-    "api"
+    "API",
+    "Web"
   ],
-  "author": "ztfcode",
-  "license": "ISC",
+  "author": "Ztfcode",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ztfcode/apisx/issues"
+  },
+  "homepage": "https://github.com/ztfcode/apisx#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }
