@@ -19,7 +19,7 @@
         const param = new URLSearchParams(document.location.search)
         const number = 6285867400659
          
-        if (isNan(param.get('phone'))) {
+        if (isNaN(param.get('phone'))) {
             alert(`${param.get('phone')} bukan no yang valid untuk kontak WhatsApp!`)
         }
 
