@@ -1,34 +1,55 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <meta charset="utf-8">
   <meta name="description" content="Ztfcode X SabunM4ndi system">
   <title id="title">Devicer</title>
   <link href="https://ztfcode.github.io/myapp/app/@xtimer/css/bootstrap.css" rel="stylesheet">
   <link href="https://ztfcode.github.io/myapp/app/@xtimer/src/images/smlogo.jpg" rel="icon">
 </head>
   <body>
-      
-      <button id="load">Sentuh Aku Mas >//<</button>
-      
+      <button id="msgbtn" type="button" class="btn btn-success text-uppercase w-100 text-center m-5"><h2 id="msg"></h2></button>
     <script>
-        const param = new URLSearchParams(document.location.search)
-        const number = 6285867400659
-        
-        if (param.get('phone') == number) {
-            navigator.getBattery().then(e => {
-                const message = `*Hai saya:* \`\`\`[${window.navigator.userAgent}]\`\`\` %0a%0a *Menyapa anda dengan persentase baterai yang tersisa di perangkat saya* %0a%0a *BATERAI SAYA: ${e.level * 100} (percent)* %0a%0a%0a _Powered by_ *Zeroteam | Ztfteam*`
-                document.getElementById('load').onclick = function () {
-                window.open(`https://api.whatsapp.com/send/?phone=${number}&text=${message}`)
-                }
-            })
-        } else {
-            alert(`invalid phone number: ${param.get('phone')}`)
-            document.getElementById('load').onclick = function () {
-                alert(`invalid phone number: ${param.get('phone')}`)
-            }
+        let client = navigator.userAgent.split(';')
+        let ven = client[2].replace(client[2].slice(client[2].lastIndexOf('B')), '').trim()
+        let vendor = ven.split(')', 1)[0]
+        let author = 'ztfcode'
+        const params = new URLSearchParams(document.location.search)
+        const apikey = params.get('apikey')
+        const view = params.get('view')
+        const auth = 'Devicer | Authentication '
+        let title = document.getElementById('title')
+        let msg = document.getElementById('msg')
+        let msgbtn = document.getElementById('msgbtn')
+        let view_data = args => alert(args)
+        let view_status = (txt, args) => {
+            view_data(txt)
+            msg.innerHTML = args[0]
+            title.innerHTML = args[1]
+            msgbtn.onclick = () => {view_data(txt)}
         }
-        console.log()
+        let keycode = atob('Z2FkaXNnYW5hcw')
+        let text, text2;
+        let status = [msg.innerHTML, title.innerHTML]
+        msg.style.textAlign = 'center'
+        
+        if (apikey == keycode) {
+            status = ['Accepted!', auth + 'success!']
+            if (apikey == keycode && view == 'dev') {
+                text2 = 'Perangkat kamu: ' + vendor
+            } else if (apikey == keycode && view == 'author') {
+                text2 = 'Seorang pemuda biasa yang ingin menghabiskan waktu mudanya untuk terus mengais ilmu sebanyak-banyaknya.\n\nttd - ztfcode\nTemanggung\b' + (new Date().getFullYear())
+                msgbtn.innerHTML = '<h2><a class="text-uppercase text-decoration-none text-light" href="https://wa.me/15042010512?text=hai!">click me!</a></h2>'
+            } else {
+                text2 = 'Mau tampilkan apa onee-chan?'
+            }
+            text = text2
+        } else {
+            status = ['Rejected!', auth + 'failed!']
+            msgbtn.classList.add('btn-danger')
+            alert('Terjadi kesalahan!')
+            text = 'Autentikasi dulu!\njangan lupa apikeynya.'
+        }
+        view_status(text, status)
     </script>
   </body>
 </html>
